@@ -1,0 +1,120 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Cocktail API validation" verbose="1" >   
+   
+  	<test name="Search ingredient by name and validate return fields" >
+    	<parameter name = "ingredientName" value="vodka"/>
+    	<parameter name = "fields" value="idIngredient,strIngredient,strDescription,strType,strAlcohol,strABV"/>
+        <classes>
+            <class name="test.scenarios.UserTestSteps" >
+            	<methods>
+        			<include name="searchIngredientsByName"/>        
+      			</methods>
+            </class>
+        </classes>
+    </test>
+    
+   <test name="Validate if ingredient is alcohalic then ABV is not null" >
+    	<parameter name = "ingredientName" value="gin"/>
+        <classes>
+            <class name="test.scenarios.UserTestSteps" >
+            	<methods>
+        			<include name="validateABV"/>        
+      			</methods>
+            </class>
+        </classes>
+    </test>
+    
+    <test name="Validate if ingredient is non alcohalic then ABV is null" >
+    	<parameter name = "ingredientName" value="orange"/>
+        <classes>
+            <class name="test.scenarios.UserTestSteps" >
+            	<methods>
+        			<include name="validateABV"/>        
+      			</methods>
+            </class>
+        </classes>
+    </test>
+    
+    <test name="Validate if ingredient is not available then no drinks found" >
+    	<parameter name = "ingredientName" value="pear"/>
+        <classes>
+            <class name="test.scenarios.UserTestSteps" >
+            	<methods>
+        			<include name="validateABVIfNodrinks"/>        
+      			</methods>
+            </class>
+        </classes>
+    </test> 
+    
+    <test name="Search cocktail by name which exists" >
+    	<parameter name = "cocktailName" value="margarita"/>
+        <classes>
+            <class name="test.scenarios.UserTestSteps" >
+            	<methods>
+        			<include name="searchCocktailByName"/>        
+      			</methods>
+            </class>
+        </classes>
+    </test>
+    
+    <test name="Search cocktail by name which doesnt exists" >
+    	<parameter name = "cocktailName" value="frutie"/>
+        <classes>
+            <class name="test.scenarios.UserTestSteps" >
+            	<methods>
+        			<include name="searchCocktailByNameInvalid"/>        
+      			</methods>
+            </class>
+        </classes>
+    </test> 
+    
+    <test name="Search cocktail by name case insensitive" >
+    	<parameter name = "cocktailName1" value="BEER"/>
+    	<parameter name = "cocktailName2" value="beer"/>
+    	<parameter name = "cocktailName3" value="Beer"/>
+        <classes>
+            <class name="test.scenarios.UserTestSteps" >
+            	<methods>
+        			<include name="searchCocktailNameCaseInsensitive"/>        
+      			</methods>
+            </class>
+        </classes>
+    </test> 
+    
+    <test name="Search cocktail by name and validate API response schema" >
+    	<parameter name = "cocktailName" value="beer"/>
+    	<parameter name = "jsonSchema" value="beerCocktailJsonSchema.json"/>
+        <classes>
+            <class name="test.scenarios.UserTestSteps" >
+            	<methods>
+        			<include name="validateSearchCocktailSchema"/>        
+      			</methods>
+            </class>
+        </classes>
+    </test> 
+    
+    <test name="Filter Drinks by type" >
+		<parameter name = "type" value="Alcoholic"/>
+        <classes>
+            <class name="test.scenarios.UserTestSteps" >
+            	<methods>
+        			<include name="filterByDrinksType"/>        
+      			</methods>
+            </class>
+        </classes>
+    </test>
+    
+    <test name="Filter Drinks by category" >
+		<parameter name = "category" value="cocktail"/>
+        <classes>
+            <class name="test.scenarios.UserTestSteps" >
+            	<methods>
+        			<include name="filterByCategory"/>        
+      			</methods>
+            </class>
+        </classes>
+    </test>
+      
+</suite>
+
