@@ -35,7 +35,7 @@ See the documentation here https://www.thecocktaildb.com/api.php.
 # Steps to execute	
 1. Install Maven 3.9(or above), Git Client(Not mandatory if using Eclipse IDE) and Java 8(or above) on local 
 2. Clone the repository on your local machine using git	
-	(https://github.com/tushki225/restassured-project.git)
+	(https://github.com/tushki225/derivco-assignment.git)
 	
 3. You can run the project in 2 different ways as mentioned below-
 
